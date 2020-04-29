@@ -38,7 +38,8 @@ def lineBreak(words, maxL, cache, i):
     def combineScoring(a, b):
         return (a[0] + b[0], a[1] + b[1])
     
-    # save result of recursive call, works itself backwards form recursion terminal, so guaranteed to hold lowest score from there on
+    # save result of recursive call, works itself backwards form recursion terminal, 
+    # so guaranteed to hold lowest score from there on
     def cacheOrRecurse(words, maxL, cache, l):
             cachedVal = cache.get(l)
             # return cached value, if none there, recurse
