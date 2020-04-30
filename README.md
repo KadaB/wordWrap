@@ -7,3 +7,27 @@ It's an exhaustive(global) recusive algorithm that calculates all possible line 
 
 The algorithm is recursive, but because of the caching of the recursion-call results the optimal paths can be reused (reoccurences), which leads to a acceptable runtime.
 
+``
+['AAA', 'BB', 'CC', 'DDDD'], line width = 6
+First line:
+  Possible linebreaks for line 1:
+  
+    (1): ['AAA'], chars: 3, raggedness = square(6 - 3) = square(3) = 9
+    (2): ['AAA', 'BB'] chare: 3+1+2 = 6, raggedness = square(6-6) = square(0) = 0
+    (3): ['AAA', 'BB', 'CC'], wouldn't fit into line => use the previous combinations
+    
+    [ (1), (2) ] = [ ['AAA'], ['AAA', 'BB'] ]
+      
+    Now from here on, we do the same for the second line, except that depending if we proceed with (1) or (2),
+    we proceed with the words left, in case of 
+
+      (1) = ['AAA']
+      rest1 = ['BB', 'CC', 'DDDDD']. 
+
+    In case of 
+
+      (2) = ['AAA', 'BB']
+      rest2 = ['CC', 'DDDDD']
+
+    And that is where the recurion comes in...
+``
