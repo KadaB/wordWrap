@@ -48,9 +48,33 @@ The algorithm is recursive, but because of the caching of the recursion-call res
     (with lvlOfRecursion: [line: scoring] )
     
     0: ['AAA': 9, 'AAA BB': 0]
-	    1: ['BB': 16, 'BB CC': 1]
-		    2: ['CC': 16]
-			    3: ['DDDDD': 1]
-		    2: ['DDDDD': 1]
-	    1: ['CC': 16]
-		    2: ['DDDDD': 1]
+	1: ['BB': 16, 'BB CC': 1]
+		2: ['CC': 16]
+			3: ['DDDDD': 1]
+		2: ['DDDDD': 1]
+	1: ['CC': 16]
+		2: ['DDDDD': 1]
+		
+    Here your can see that the cases ['CC': 16] and ['DDDDD': 1] reoccure. Since they have the same scoring,
+    every line below it will have the same optimal linebreaks, since there are no other ways to break the lines
+    from there on. The recursion will calculate the exact same breaks from there on with the same scoring.
+    
+    If the algorithm would see ['DDDDD': 1] then he could technically simple reuse the calucation.
+    
+    Since ['DDDDD': 1] is the end of the recursion(recursion terminal) it means it's garuanteed that from there
+    on there is no less expensive path (['DDDDD': 1] being the minimum for with least raggedness at that level).
+    
+    The same goes for ['CC': 16], since it's on a higher level, we spare even more recursive calls and could
+    use the result, once we have encountered it and cleared all possible linebreaks from there on.
+
+    Effectively we could only these calls
+    0: ['AAA': 9, 'AAA BB': 0]
+	1: ['BB': 16, 'BB CC': 1]
+		2: ['CC': 16]
+			3: ['DDDDD': 1]
+		2: ~~['DDDDD': 1]~~
+	1: ~~['CC': 16]~~
+		2: ~~['DDDDD': 1]~~
+		
+    Reusing these reoccurrences once we guaranteed that they are the optimal path from there on reduces
+    the runtime from an exponential to a quadratic
