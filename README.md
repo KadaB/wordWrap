@@ -74,8 +74,9 @@ The algorithm is recursive, but because of the caching of the recursion-call res
     use the result, once we have encountered it and cleared all possible linebreaks from there on. When we
     go back to lvl1 ['BB CC': 1] we can chose now between ['CC': 16], ['DDDDD': 1]... ['DDDDD': 1] has the lower
     score, so we can use that. ['DDDDD': 1] also is a terminal, which means from there on there is no way
-    that there is a path with a lesser score.. Which assures the minimal scoring. ['CC': 16] on the other hand
-    leads to ['DDDDD': 1] and has no other paths than ['DDDDD': 1], which is a terminal, which means that there
+    that there is a path with a lesser score(since it ends the calcultion or there is no need to look further).. 
+    Which assures the minimal scoring. ['CC': 16] on the other hand leads to ['DDDDD': 1] and has no other paths than         
+    ['DDDDD': 1], which is a terminal, which means that there
     is no other path than the "minimal" we have chosen to this point (this principle is the core to guarantee
     that we pick the least cost for each path and is the core argument for the prove of Dijkstra's Algorithm
     - "if we had a shorter path, we would have taken it at this point", combine with the guarantee of the 
