@@ -43,6 +43,9 @@ The algorithm is recursive, but because of the caching of the recursion-call res
       (7) ['CC']
       (8) ['CC', 'DDDDD'] being to large for the line, only (7)
       
+    The functione getIndicesForWordsInLine(i) basically calculates all the possible words fitting in a line, till
+    the maximum line width is reached (starting at index for wordset i). It doesn return the set of words themselves,
+    but instead the indices. (Here in the example we will work with the sets, because it's easier to read).
 
     If you run a recursion and would give out the output for each level of recursion you would get something like:
     (with lvlOfRecursion: [line: scoring] )
