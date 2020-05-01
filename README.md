@@ -49,11 +49,11 @@ The algorithm is recursive, but because of the caching of the recursion-call res
     
     0: ['AAA': 9, 'AAA BB': 0]
         1: ['BB': 16, 'BB CC': 1]
-		2: ['CC': 16]
-			3: ['DDDDD': 1]
-		2: ['DDDDD': 1]
-	1: ['CC': 16]
-		2: ['DDDDD': 1]
+            2: ['CC': 16]
+                3: ['DDDDD': 1]
+            2: ['DDDDD': 1]
+        1: ['CC': 16]
+            2: ['DDDDD': 1]
 		
     Here your can see that the cases ['CC': 16] and ['DDDDD': 1] reoccure. Since they have the same scoring,
     every line below it will have the same optimal linebreaks, since there are no other ways to break the lines
@@ -70,11 +70,11 @@ The algorithm is recursive, but because of the caching of the recursion-call res
     Effectively we could only these calls
     0: ['AAA': 9, 'AAA BB': 0]
         1: ['BB': 16, 'BB CC': 1]
-		2: ['CC': 16]
-			3: ['DDDDD': 1]
-		2: ----
-	1: ----
-		2: ----
+            2: ['CC': 16]
+                3: ['DDDDD': 1]
+            2: ----
+        1: ----
+            2: ----
 		
     Reusing these reoccurrences once we guaranteed that they are the optimal path from there on reduces
     the runtime from an exponential to a quadratic
