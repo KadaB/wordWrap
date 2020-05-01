@@ -12,7 +12,7 @@ The algorithm is recursive, but because of the caching of the recursion-call res
       First line:
       Possible linebreaks for line 1:  
         (1): ['AAA'], chars: 3, raggedness = square(6 - 3) = square(3) = 9
-        (2): ['AAA', 'BB'] chare: 3+1+2 = 6, raggedness = square(6-6) = square(0) = 0
+        (2): ['AAA', 'BB'] chare: 3+2+1(whitespace) = 6, raggedness = square(6-6) = square(0) = 0
         (3): ['AAA', 'BB', 'CC'], wouldn't fit into line => use the previous combinations
     
       [ (1), (2) ] = [ ['AAA'], ['AAA', 'BB'] ]
@@ -43,3 +43,14 @@ The algorithm is recursive, but because of the caching of the recursion-call res
       (7) ['CC']
       (8) ['CC', 'DDDDD'] being to large for the line, only (7)
       
+
+    If you run a recursion and would give out the output for each level of recursion you would get something like:
+    (with lvlOfRecursion: [line: scoring] )
+    
+    0: ['AAA': 9, 'AAA BB': 0]
+	    1: ['BB': 16, 'BB CC': 1]
+		    2: ['CC': 16]
+			    3: ['DDDDD': 1]
+		    2: ['DDDDD': 1]
+	    1: ['CC': 16]
+		    2: ['DDDDD': 1]
