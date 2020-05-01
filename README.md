@@ -71,7 +71,22 @@ The algorithm is recursive, but because of the caching of the recursion-call res
     on there is no less expensive path (['DDDDD': 1] being the minimum for with least raggedness at that level).
     
     The same goes for ['CC': 16], since it's on a higher level, we spare even more recursive calls and could
-    use the result, once we have encountered it and cleared all possible linebreaks from there on.
+    use the result, once we have encountered it and cleared all possible linebreaks from there on. When we
+    go back to lvl1 ['BB CC': 1] we can chose now between ['CC': 16], ['DDDDD': 1]... ['DDDDD': 1] has the lower
+    score, so we can use that. ['DDDDD': 1] also is a terminal, which means from there on there is no way
+    that there is a path with a lesser score.. Which assures the minimal scoring. ['CC': 16] on the other hand
+    leads to ['DDDDD': 1] and has no other paths than ['DDDDD': 1], which is a terminal, which means that there
+    is no other path than the "minimal" we have chosen to this point (this principle is the core to guarantee
+    that we pick the least cost for each path and is the core argument for the prove of Dijkstra's Algorithm
+    - "if we had a shorter path, we would have taken it at this point", combine with the guarantee of the 
+    terminal [which leaves no question if there is a more optimal path] this makes the recursive algorithm (and
+    also all DP-Algorithms possible.). So the upper levels have a guarantee that they are picking between the
+    lowest path and there is no other path they are missing. Which inables us to optimize over all linebreaks,
+    but also enables us to cache the results when we come back from a recursion (post fix). The first time we 
+    have a result for a recursion call, we can cache it. And the recursions can pick between calculating the
+    new path or grapping it from the cache (which is done in the cacheOrRecurse-function). If an optimal result
+    is in the cache we don't need to refill for that level, because through the terminal and backwards
+    calculation we are sure to already have the optimal solution in the cache, which serves as our reoccurences.
 
     Effectively we could only these calls
     0: ['AAA': 9, 'AAA BB': 0]
