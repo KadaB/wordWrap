@@ -48,7 +48,7 @@ The algorithm is recursive, but because of the caching of the recursion-call res
     (with lvlOfRecursion: [line: scoring] )
     
     0: ['AAA': 9, 'AAA BB': 0]
-	1: ['BB': 16, 'BB CC': 1]
+        1: ['BB': 16, 'BB CC': 1]
 		2: ['CC': 16]
 			3: ['DDDDD': 1]
 		2: ['DDDDD': 1]
@@ -69,7 +69,7 @@ The algorithm is recursive, but because of the caching of the recursion-call res
 
     Effectively we could only these calls
     0: ['AAA': 9, 'AAA BB': 0]
-	1: ['BB': 16, 'BB CC': 1]
+        1: ['BB': 16, 'BB CC': 1]
 		2: ['CC': 16]
 			3: ['DDDDD': 1]
 		2: ----
